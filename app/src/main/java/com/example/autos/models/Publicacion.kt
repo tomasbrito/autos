@@ -5,7 +5,7 @@ import android.os.Parcelable
 import com.google.firebase.Timestamp
 import java.util.*
 
-class Publicacion(val id: String, val marca: String, val modelo: String, val precio: Int, val detalle: String, val urlImg: String) : Parcelable {
+class Publicacion(val id: String, val marca: String, val modelo: String, val precio: Int, val detalle: String, val urlImg: String, val año: Int) : Parcelable {
 
     constructor(parcel: Parcel) : this(
         parcel.readString()!!,
@@ -13,10 +13,11 @@ class Publicacion(val id: String, val marca: String, val modelo: String, val pre
         parcel.readString()!!,
         parcel.readInt(),
         parcel.readString()!!,
-        parcel.readString()!!
+        parcel.readString()!!,
+        parcel.readInt()!!
     ) {}
 
-    constructor() : this("","","",0,"","")
+    constructor() : this("","","",0,"","",0)
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(id)
@@ -25,6 +26,7 @@ class Publicacion(val id: String, val marca: String, val modelo: String, val pre
         parcel.writeInt(precio)
         parcel.writeString(detalle)
         parcel.writeString(urlImg)
+        parcel.writeInt(año)
     }
 
     override fun describeContents(): Int {

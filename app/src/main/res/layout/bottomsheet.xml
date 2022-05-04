@@ -1,24 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
 
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:background="@drawable/bottom_sheet_background">
+    android:background="@drawable/bottom_sheet_background"
+    android:orientation="vertical">
 
 
     <LinearLayout
         android:layout_width="412dp"
-        android:layout_height="730dp"
+        android:layout_height="728dp"
         android:layout_marginHorizontal="20dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="0dp">
+        tools:ignore="MissingConstraints">
 
         <View
             android:layout_width="match_parent"
@@ -44,42 +43,34 @@
             android:layout_marginBottom="10dp"
             android:background="@color/colorPrimary" />
 
-        <TextView
-            android:id="@+id/txt_precioMin"
-            android:layout_width="124dp"
+        <Spinner
+            android:id="@+id/spinner_marca"
+            android:layout_width="253dp"
+            android:layout_height="26dp"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="70dp"
+            android:layout_marginVertical="30dp"
+            android:entries="@array/marcas" />
+
+        <EditText
+            android:id="@+id/editText_desde"
+            android:layout_width="253dp"
             android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:layout_gravity="center"
+            android:ems="10"
+            android:hint="Desde"
+            android:inputType="number"
+            android:text="2008" />
 
-        <TextView
-            android:id="@+id/txt_precioMax"
-            android:layout_width="124dp"
+        <EditText
+            android:id="@+id/editText_hasta"
+            android:layout_width="253dp"
             android:layout_height="wrap_content"
-            android:text="TextView" />
-
-        <SeekBar
-            android:id="@+id/seekBar"
-            android:max="100"
-            android:progress="50"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:layout_marginBottom="10dp"
-            android:background="@color/browser_actions_bg_grey" />
-
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Button" />
-
-        <Button
-            android:id="@+id/button3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Button" />
+            android:layout_gravity="center"
+            android:ems="10"
+            android:hint="Hasta"
+            android:inputType="number"
+            android:text="2022" />
 
         <Button
 
@@ -107,6 +98,7 @@
             android:textAllCaps="false"
             android:textColor="#ffffff"
             android:textSize="15dp" />
+
 
     </LinearLayout>
 

@@ -6,8 +6,22 @@
     app:startDestination="@id/listaFragment">
 
     <fragment
+        app:navGraph="@navigation/main_navigation"
         android:id="@+id/listaFragment"
         android:name="com.example.autos.fragments.ListaFragment"
         android:label="fragment_lista"
-        tools:layout="@layout/fragment_lista" />
+        tools:layout="@layout/fragment_lista" >
+        <action
+            android:id="@+id/action_listaFragment_to_postFragment2"
+            app:destination="@id/postFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/postFragment"
+        android:name="com.example.autos.fragments.PostFragment"
+        android:label="fragment_post"
+        tools:layout="@layout/fragment_post" >
+        <argument
+            android:name="selectedPost"
+            app:argType="com.example.autos.models.Publicacion" />
+    </fragment>
 </navigation>

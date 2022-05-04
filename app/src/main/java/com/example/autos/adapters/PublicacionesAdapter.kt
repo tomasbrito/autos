@@ -1,19 +1,19 @@
 package com.example.autos.adapters
 
 import android.content.Context
+import android.icu.text.DecimalFormat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import com.bumptech.glide.Glide
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.autos.R
 import com.example.autos.models.Publicacion
-import java.text.DateFormat
 
-class PublicacionesAdapter(private var postList: MutableList<Publicacion>, var context: Context): RecyclerView.Adapter<PublicacionesAdapter.PublicacionesHolder>() {
+class PublicacionesAdapter(private var postList: MutableList<Publicacion>, var context: Context, var onPostClick: (Publicacion) -> Unit): RecyclerView.Adapter<PublicacionesAdapter.PublicacionesHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PublicacionesHolder {
@@ -31,11 +31,16 @@ class PublicacionesAdapter(private var postList: MutableList<Publicacion>, var c
         holder.setDetalle(postList[position].detalle)
         holder.setPrecio(postList[position].precio)
         holder.setModelo(postList[position].modelo)
+        holder.setAño(postList[position].año)
 
         Glide
             .with(context)
             .load(postList[position].urlImg)
             .into(holder.getImageView())
+
+        holder.getCardLayout().setOnClickListener{
+            onPostClick(postList[position])
+        }
 
     }
 
@@ -49,22 +54,26 @@ class PublicacionesAdapter(private var postList: MutableList<Publicacion>, var c
         }
 
 
-        fun setMarca(txtMarca : String){
+        fun setMarca(txtMarca: String){
             val txt : TextView = view.findViewById(R.id.txt_marca)
             txt.text = txtMarca
         }
 
-        fun setModelo(txtModelo : String){
+        fun setModelo(txtModelo: String){
             val txt : TextView = view.findViewById(R.id.txt_modelo)
             txt.text = txtModelo
         }
 
-        fun setPrecio(txtPrecio : Int){
+        fun setPrecio(txtPrecio: Int){
             val txt : TextView = view.findViewById(R.id.txt_precio)
-            txt.text = "$" + txtPrecio.toString()
+            val formatter = DecimalFormat("#,###")
+            var precio : String = "$" + (formatter.format(txtPrecio)).toString()
+            precio = precio.replace(",",".")
+            txt.text = precio
+
         }
 
-        fun setDetalle(txtDetalle : String){
+        fun setDetalle(txtDetalle: String){
             val txt : TextView = view.findViewById(R.id.txt_detalle)
             txt.text = txtDetalle
         }
@@ -72,6 +81,16 @@ class PublicacionesAdapter(private var postList: MutableList<Publicacion>, var c
         fun getImageView () : ImageView {
             return view.findViewById(R.id.img_car)
         }
+
+        fun setAño(txt_año: Int) {
+            val txt : TextView = view.findViewById(R.id.txt_año)
+            txt.text = txt_año.toString()
+        }
+
+        fun getCardLayout(): CardView {
+            return view.findViewById(R.id.cardView)
+        }
+
 
     }
 }
