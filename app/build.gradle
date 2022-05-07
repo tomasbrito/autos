@@ -62,6 +62,9 @@ dependencies {
     //Firestore para base de datos
     implementation 'com.google.firebase:firebase-firestore-ktx:21.4.0'
 
+    //material design
+    implementation 'com.google.android.material:material:1.2.1'
+
 
 
 
