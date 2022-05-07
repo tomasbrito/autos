@@ -1,16 +1,16 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/page_1"
+        android:id="@+id/listaFragment"
         android:enabled="true"
         android:icon="@drawable/car"
         android:title="Comprar"/>
     <item
-        android:id="@+id/page_2"
+        android:id="@+id/sellFragment"
         android:enabled="true"
         android:icon="@drawable/currency_usd"
         android:title="Vender"/>
     <item
-        android:id="@+id/page_3"
+        android:id="@+id/contactFragment"
         android:enabled="true"
         android:icon="@drawable/message_outline"
         android:title="Contacto"/>

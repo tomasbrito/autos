@@ -22,7 +22,7 @@ class PostFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         fragmentView = inflater.inflate(R.layout.fragment_post, container, false)
-        id_post = fragmentView.findViewById(R.id.idPost)
+
 
 
 
@@ -33,7 +33,6 @@ class PostFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         val post = PostFragmentArgs.fromBundle(requireArguments()).selectedPost
-        id_post.text = "${post.id} ${post.año} ${post.marca} ${post.modelo} ${post.detalle}"
 
 
 

@@ -14,6 +14,9 @@
         <action
             android:id="@+id/action_listaFragment_to_postFragment2"
             app:destination="@id/postFragment" />
+        <action
+            android:id="@+id/action_listaFragment_self"
+            app:destination="@id/listaFragment" />
     </fragment>
     <fragment
         android:id="@+id/postFragment"
@@ -24,4 +27,14 @@
             android:name="selectedPost"
             app:argType="com.example.autos.models.Publicacion" />
     </fragment>
+    <fragment
+        android:id="@+id/sellFragment"
+        android:name="com.example.autos.fragments.SellFragment"
+        android:label="fragment_sell"
+        tools:layout="@layout/fragment_sell" />
+    <fragment
+        android:id="@+id/contactFragment"
+        android:name="com.example.autos.fragments.ContactFragment"
+        android:label="fragment_contact"
+        tools:layout="@layout/fragment_contact" />
 </navigation>
