@@ -6,4 +6,57 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:name="androidx.navigation.fragment.NavHostFragment"
-    tools:context=".fragments.PostFragment" />
+    tools:context=".fragments.PostFragment" >
+
+    <TextView
+        android:id="@+id/txt_modelo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/share_bold_italic"
+        android:text="modelo"
+        android:textColor="@color/design_default_color_on_secondary"
+        android:textSize="26sp"
+        app:layout_constraintStart_toEndOf="@+id/txt_marca"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txt_marca"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/share_bold_italic"
+        android:text="Marca"
+        android:textColor="@color/design_default_color_on_secondary"
+        android:textSize="26sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txt_detalle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/share_bold_italic"
+        android:text="Detalle"
+        android:textColor="@color/design_default_color_on_secondary"
+        android:textSize="26sp"
+        app:layout_constraintStart_toEndOf="@+id/txt_modelo"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txt_añoKmTrans"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="4dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="Año"
+        android:textColor="@color/design_default_color_on_secondary"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_marca" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

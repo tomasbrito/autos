@@ -83,7 +83,7 @@ class PublicacionesAdapter(private var postList: MutableList<Publicacion>, var c
         }
 
         fun setAño(txt_año: Int) {
-            val txt : TextView = view.findViewById(R.id.txt_año)
+            val txt : TextView = view.findViewById(R.id.txt_añoKmTrans)
             txt.text = txt_año.toString()
         }
 
