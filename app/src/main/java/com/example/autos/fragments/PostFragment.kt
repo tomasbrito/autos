@@ -1,12 +1,17 @@
 package com.example.autos.fragments
 
 import android.annotation.SuppressLint
+import android.content.ContentValues.TAG
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
+import com.bumptech.glide.Glide
 import com.example.autos.R
 
 
@@ -20,6 +25,10 @@ class PostFragment : Fragment() {
     lateinit var year : TextView
     lateinit var km : TextView
     lateinit var transmition : TextView
+    lateinit var imageView: ImageView
+    lateinit var btn_img_next : Button
+    lateinit var btn_img_prev : Button
+    var img_pos = 0
 
 
 
@@ -29,6 +38,9 @@ class PostFragment : Fragment() {
         model = fragmentView.findViewById(R.id.txt_modelo)
         detail = fragmentView.findViewById(R.id.txt_detalle)
         year = fragmentView.findViewById(R.id.txt_añoKmTrans)
+        imageView = fragmentView.findViewById(R.id.imageView)
+        btn_img_next = fragmentView.findViewById(R.id.btn_img_next)
+        btn_img_prev = fragmentView.findViewById(R.id.btn_img_prev)
 
         return fragmentView
     }
@@ -36,13 +48,69 @@ class PostFragment : Fragment() {
     @SuppressLint("SetTextI18n")
     override fun onStart() {
         super.onStart()
-        val post = PostFragmentArgs.fromBundle(requireArguments()).selectedPost
+        var post = PostFragmentArgs.fromBundle(requireArguments()).selectedPost
 
         brand.text = post.marca
         model.text = post.modelo
         detail.text = post.detalle
         year.text = "${post.año.toString()} • 9000 • Automatico "
+        Glide.with(requireContext())
+            .load(post.urlImg)
+            .into(imageView)
+
+
+        var listUrl = ArrayList<String>()
+
+        listUrl.add(post.urlImg)
+        listUrl.add("https://content.tinytap.it/Numero_1_y_2__db7ae6b0-96d4-11eb-aa1a-fb8914ed108a/coverImage813x610.jpg")
+        listUrl.add("https://st2.depositphotos.com/1561359/12186/v/600/depositphotos_121863800-stock-illustration-3d-shiny-blue-number-2.jpg")
+        listUrl.add("https://dibujosycolores.com/numeros/numero-3/numero-3-7.jpg")
+        listUrl.add("https://images.kavak.services/images/154426/EXTERIOR-back-1640288174112.jpeg?d=756x434")
+
+        btn_img_next.setOnClickListener{
+            changeImage(1, listUrl)
+        }
+
+        btn_img_prev.setOnClickListener{
+            changeImage(-1, listUrl)
+        }
+
+        setButtons(btn_img_prev, btn_img_next,listUrl)
+
     }
+
+    private fun setButtons(btn_prev: Button,btn_next: Button, listUrl : ArrayList<String>) {
+        if (img_pos == 0){
+            btn_prev.isEnabled = false
+            btn_prev.isClickable = false
+        } else {
+            btn_prev.isEnabled = true
+            btn_prev.isClickable = true
+        }
+
+        if (img_pos == listUrl.size - 1){
+            btn_next.isEnabled = false
+            btn_next.isClickable = false
+        } else {
+            btn_next.isEnabled = true
+            btn_next.isClickable = true
+        }
+    }
+
+    private fun changeImage(masmenos : Int, listUrl : ArrayList<String>) {
+        img_pos += masmenos
+        Log.d(TAG, "position1 $img_pos  y  $masmenos")
+        Glide.with(requireContext())
+            .load(listUrl.get(img_pos))
+            .into(imageView)
+
+        setButtons(btn_img_prev, btn_img_next, listUrl)
+
+
+        Log.d(TAG, "position2 $listUrl")
+        Log.d(TAG, "position3 $img_pos")
+    }
+
 
 
 }
