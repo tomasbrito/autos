@@ -13,6 +13,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.example.autos.R
+import kotlin.math.log
 
 
 class PostFragment : Fragment() {
@@ -75,10 +76,10 @@ class PostFragment : Fragment() {
             changeImage(-1, listUrl)
         }
 
-        setButtons(btn_img_prev, btn_img_next,listUrl)
-
     }
 
+    //todo no lo usa mas porque ahora da la vuelta en las fotos
+    //habilita o deshabilita los botones para cambiar de foton segun en que foto este
     private fun setButtons(btn_prev: Button,btn_next: Button, listUrl : ArrayList<String>) {
         if (img_pos == 0){
             btn_prev.isEnabled = false
@@ -99,12 +100,20 @@ class PostFragment : Fragment() {
 
     private fun changeImage(masmenos : Int, listUrl : ArrayList<String>) {
         img_pos += masmenos
-        Log.d(TAG, "position1 $img_pos  y  $masmenos")
+
+        //si esta en la ultima foto pasa a la primera
+        if(img_pos == listUrl.size){
+            img_pos = 0
+        } else if (img_pos == -1){ //si esta en la primera foto pasa a la ultima
+            img_pos = (listUrl.size - 1 )
+        }
+
+
+
         Glide.with(requireContext())
-            .load(listUrl.get(img_pos))
+            .load(listUrl[img_pos])
             .into(imageView)
 
-        setButtons(btn_img_prev, btn_img_next, listUrl)
 
 
         Log.d(TAG, "position2 $listUrl")
